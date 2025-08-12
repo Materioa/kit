@@ -1,0 +1,13 @@
+# Example configuration for another kit
+kit_id: "abc123kit02"
+username: "another_user"
+allowed_domains:
+  - "anotherdomain.com"
+  - "localhost"
+styles:
+  - "fontawesome"
+  - "solid"
+  - "regular"
+  - "brands"
+  - "notdog-solid"
+  - "sharp-solid"

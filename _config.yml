@@ -1,0 +1,27 @@
+# Jekyll Configuration for Font Awesome Kit Server
+title: Font Awesome Kit Server
+baseurl: ""
+url: ""
+
+# Collections
+collections:
+  kits:
+    output: true
+    permalink: /kits/:name.js
+
+# Defaults
+defaults:
+  - scope:
+      path: "_kits"
+    values:
+      layout: null
+
+# Plugins
+plugins:
+  - jekyll-redirect-from
+
+# Exclude files
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock

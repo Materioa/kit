@@ -1,27 +1,20 @@
-# Jekyll build output
-_site/
-.jekyll-cache/
-.jekyll-metadata
-.sass-cache/
+# Jekyll build output (local development only)
 
-# Kit creation source files (hidden from public access)
-_data/
-kit-*.js
+
+# Development and utility files
 add_kit.rb
 validate_kits.rb
+deploy.rb
+nginx.conf
 
-# Jekyll configuration and development files
-_config.yml
-Gemfile
-Gemfile.lock
-
-# Documentation and test files (keep GITHUB_PAGES.md for documentation)
+# Documentation and test files  
 README.md
 test.html
 kit-test.html
 domain-test.html
+GITHUB_PAGES.md
 
-# Ruby and bundler files
+# Ruby and bundler files (keep for GitHub Actions)
 .bundle/
 vendor/
 
@@ -41,7 +34,7 @@ Thumbs.db
 *.tmp
 *.temp
 
-# Node modules (if using any Jekyll plugins)
+# Node modules
 node_modules/
 
 # Environment files
@@ -53,19 +46,12 @@ node_modules/
 *.bak
 *.backup
 
-# Allow GitHub Actions workflow
-# !.github/
-
-# Allow deployment and configuration files
-# !deploy.rb
-# !nginx.conf
-# !GITHUB_PAGES.md
-
-# Only allow the precompiled kit JavaScript files
-# These will be the only publicly accessible files:
-# - {kit_id}.js files in the root
-# - CSS files
-# - webfonts/
-# - index.html or landing.html
-
-# Everything else should be hidden to protect the kit creation system
+# IMPORTANT: For GitHub Pages deployment, we need these files:
+# - _config.yml (Jekyll configuration)
+# - _data/ (kit configurations) 
+# - kit-*.js (Jekyll templates)
+# - Gemfile & Gemfile.lock (for GitHub Actions)
+# - .github/ (workflow files)
+# 
+# The GitHub Actions workflow will build Jekyll and deploy only 
+# the final compiled files ({kit_id}.js, CSS, fonts) to gh-pages branch

@@ -1,0 +1,11 @@
+---
+kit_id: 6a787c7335
+username: jinansh
+allowed_domains:
+- materioa.netlify.app
+styles:
+- all
+- solid
+- regular
+- light
+- brands
