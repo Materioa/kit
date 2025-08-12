@@ -2,7 +2,7 @@
 kit_id: "673492kit01"
 username: "your_username"
 allowed_domains:
-  - "mydomain.com"
+  - "materioa.github.io"
   - "localhost"
   - "127.0.0.1"
 styles:
