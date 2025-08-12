@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug - Font Awesome Kit Server</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 50px auto; padding: 20px; }
+        .test { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .success { background: #d4edda; }
+        .error { background: #f8d7da; }
+        .pending { background: #fff3cd; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Font Awesome Kit Server Debug</h1>
+    
+    <div class="test pending" id="test1">
+        <h3>Test 1: Page Loading</h3>
+        <p><strong>Status:</strong> <span id="status1">Testing...</span></p>
+        <p><strong>URL:</strong> <code id="url1"></code></p>
+    </div>
+    
+    <div class="test pending" id="test2">
+        <h3>Test 2: Kit 673492kit01.js</h3>
+        <p><strong>Status:</strong> <span id="status2">Testing...</span></p>
+        <p><strong>URL:</strong> <code id="url2"></code></p>
+    </div>
+    
+    <div class="test pending" id="test3">
+        <h3>Test 3: Kit abc123kit02.js</h3>
+        <p><strong>Status:</strong> <span id="status3">Testing...</span></p>
+        <p><strong>URL:</strong> <code id="url3"></code></p>
+    </div>
+    
+    <div class="test pending" id="test4">
+        <h3>Test 4: CSS Files</h3>
+        <p><strong>Status:</strong> <span id="status4">Testing...</span></p>
+        <p><strong>Fontawesome.css:</strong> <code id="css1"></code></p>
+    </div>
+
+    <h2>Manual Tests</h2>
+    <p>If GitHub Actions built successfully, these URLs should work:</p>
+    <ul>
+        <li><a href="./673492kit01.js" target="_blank">673492kit01.js</a></li>
+        <li><a href="./abc123kit02.js" target="_blank">abc123kit02.js</a></li>
+        <li><a href="./6a787c7335.js" target="_blank">6a787c7335.js</a></li>
+        <li><a href="./fontawesome.css" target="_blank">fontawesome.css</a></li>
+    </ul>
+
+    <h2>Troubleshooting</h2>
+    <p>If kits are 404:</p>
+    <ol>
+        <li>Check GitHub repository → Actions tab for build errors</li>
+        <li>Ensure GitHub Pages is enabled (Settings → Pages → Source: GitHub Actions)</li>
+        <li>Wait for deployment to complete (can take 5-10 minutes)</li>
+        <li>Check if Jekyll built the files correctly</li>
+    </ol>
+
+    <script>
+        const baseUrl = window.location.origin + window.location.pathname.replace('/debug.html', '').replace(/\/$/, '');
+        
+        document.getElementById('url1').textContent = window.location.href;
+        document.getElementById('url2').textContent = baseUrl + '/673492kit01.js';
+        document.getElementById('url3').textContent = baseUrl + '/abc123kit02.js';
+        document.getElementById('css1').textContent = baseUrl + '/fontawesome.css';
+        
+        // Test kit files
+        function testUrl(url, statusId, testId) {
+            fetch(url)
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById(statusId).textContent = '✅ Found';
+                        document.getElementById(testId).className = 'test success';
+                    } else {
+                        document.getElementById(statusId).textContent = `❌ ${response.status} ${response.statusText}`;
+                        document.getElementById(testId).className = 'test error';
+                    }
+                })
+                .catch(error => {
+                    document.getElementById(statusId).textContent = `❌ ${error.message}`;
+                    document.getElementById(testId).className = 'test error';
+                });
+        }
+        
+        // Run tests
+        window.addEventListener('load', function() {
+            document.getElementById('status1').textContent = '✅ Page loaded successfully';
+            document.getElementById('test1').className = 'test success';
+            
+            testUrl(baseUrl + '/673492kit01.js', 'status2', 'test2');
+            testUrl(baseUrl + '/abc123kit02.js', 'status3', 'test3');
+            testUrl(baseUrl + '/fontawesome.css', 'status4', 'test4');
+        });
+    </script>
+</body>
+</html>
