@@ -1,5 +1,8 @@
 # Jekyll build output (local development only)
-
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
 
 # Development and utility files
 add_kit.rb
