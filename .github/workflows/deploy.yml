@@ -1,0 +1,116 @@
+name: Build and Deploy Font Awesome Kits
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - '_data/**'
+      - 'kit-*.js'
+      - '*.css'
+      - 'webfonts/**'
+      - '_config.yml'
+      - 'index.html'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v4
+
+      - name: Build Jekyll site
+        run: |
+          bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        env:
+          JEKYLL_ENV: production
+
+      - name: Create clean deployment
+        run: |
+          # Create deployment directory
+          mkdir -p deploy
+          
+          # Copy only necessary files from _site
+          cp _site/*.js deploy/ 2>/dev/null || echo "No JS files found"
+          cp _site/*.css deploy/ 2>/dev/null || echo "No CSS files found"
+          cp -r _site/webfonts deploy/ 2>/dev/null || echo "No webfonts found"
+          cp _site/index.html deploy/ 2>/dev/null || echo "No index.html found"
+          
+          # Create .nojekyll to prevent GitHub from processing as Jekyll
+          touch deploy/.nojekyll
+          
+          # Create a simple index.html if none exists
+          if [ ! -f deploy/index.html ]; then
+            cat > deploy/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <title>Font Awesome Kit Server</title>
+              <style>
+                  body { font-family: Arial, sans-serif; max-width: 800px; margin: 50px auto; padding: 20px; }
+                  .kit { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+                  code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; }
+              </style>
+          </head>
+          <body>
+              <h1>🚀 Font Awesome Kit Server</h1>
+              <p>Your Font Awesome kits are ready!</p>
+              
+              <div class="kit">
+                  <h3>Available Kits:</h3>
+                  <p>Include any of these in your HTML:</p>
+                  <pre><code>&lt;script src="https://yourusername.github.io/your-repo/673492kit01.js"&gt;&lt;/script&gt;</code></pre>
+              </div>
+              
+              <div class="kit">
+                  <h3>Features:</h3>
+                  <ul>
+                      <li>✅ Domain validation</li>
+                      <li>✅ Custom style selection</li>
+                      <li>✅ Secure kit delivery</li>
+                      <li>✅ Automatic updates</li>
+                  </ul>
+              </div>
+          </body>
+          </html>
+          EOF
+          fi
+          
+          # List deployed files
+          echo "Deployed files:"
+          find deploy -type f -name "*" | sort
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./deploy
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

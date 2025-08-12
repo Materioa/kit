@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Awesome Kit Test</title>
+    <!-- Load your Font Awesome kit -->
+    <script src="/673492kit01.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .icon-demo {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .icon-demo i {
+            margin-right: 10px;
+            width: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1><i class="fas fa-font-awesome"></i> Font Awesome Kit Test</h1>
+    
+    <p>This page tests the Font Awesome kit loading. Icons should appear below:</p>
+    
+    <div class="icon-demo">
+        <i class="fas fa-home"></i> Home (Solid)
+    </div>
+    
+    <div class="icon-demo">
+        <i class="far fa-star"></i> Star (Regular)
+    </div>
+    
+    <div class="icon-demo">
+        <i class="fal fa-heart"></i> Heart (Light)
+    </div>
+    
+    <div class="icon-demo">
+        <i class="fab fa-github"></i> GitHub (Brand)
+    </div>
+    
+    <div class="icon-demo">
+        <i class="fad fa-star"></i> Star (Duotone)
+    </div>
+    
+    <h2>Kit Information</h2>
+    <div id="kit-info">
+        <p>Loading kit information...</p>
+    </div>
+    
+    <script>
+        // Display kit information when loaded
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                if (window.FontAwesome && window.FontAwesome.kit) {
+                    var kit = window.FontAwesome.kit;
+                    document.getElementById('kit-info').innerHTML = 
+                        '<p><strong>Kit ID:</strong> ' + kit.id + '</p>' +
+                        '<p><strong>Username:</strong> ' + kit.username + '</p>' +
+                        '<p><strong>Version:</strong> ' + kit.version + '</p>' +
+                        '<p><strong>Domain:</strong> ' + window.location.hostname + '</p>';
+                } else {
+                    document.getElementById('kit-info').innerHTML = 
+                        '<p style="color: red;">Font Awesome kit not loaded or domain not authorized.</p>';
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

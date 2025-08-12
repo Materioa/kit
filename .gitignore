@@ -1,0 +1,71 @@
+# Jekyll build output
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+
+# Kit creation source files (hidden from public access)
+_data/
+kit-*.js
+add_kit.rb
+validate_kits.rb
+
+# Jekyll configuration and development files
+_config.yml
+Gemfile
+Gemfile.lock
+
+# Documentation and test files (keep GITHUB_PAGES.md for documentation)
+README.md
+test.html
+kit-test.html
+domain-test.html
+
+# Ruby and bundler files
+.bundle/
+vendor/
+
+# System files
+.DS_Store
+Thumbs.db
+*.log
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+
+# Node modules (if using any Jekyll plugins)
+node_modules/
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Backup files
+*.bak
+*.backup
+
+# Allow GitHub Actions workflow
+# !.github/
+
+# Allow deployment and configuration files
+# !deploy.rb
+# !nginx.conf
+# !GITHUB_PAGES.md
+
+# Only allow the precompiled kit JavaScript files
+# These will be the only publicly accessible files:
+# - {kit_id}.js files in the root
+# - CSS files
+# - webfonts/
+# - index.html or landing.html
+
+# Everything else should be hidden to protect the kit creation system
