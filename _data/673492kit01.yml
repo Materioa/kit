@@ -1,6 +1,6 @@
 # Example configuration for kit 673492kit01
 kit_id: "673492kit01"
-username: "your_username"
+username: "mtrio-kit-off-v1"
 allowed_domains:
   - "materioa.github.io"
   - "localhost"

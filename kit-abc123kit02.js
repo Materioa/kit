@@ -44,7 +44,7 @@ Allowed Domains: {{ kit_data.allowed_domains | join: ', ' }}
     }
     
     // Get base URL (assuming CSS files are in the same directory as this JS file)
-    var baseUrl = '{{ site.baseurl }}{% unless site.baseurl == "" %}/{% endunless %}';
+    var baseUrl = 'https://materioa.github.io/kit/';
     
     // Load each configured style
     kitConfig.styles.forEach(function(style) {
