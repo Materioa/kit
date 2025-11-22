@@ -4,6 +4,8 @@ username: jinansh
 allowed_domains:
 - "materioa.github.io"
 - "materioa.netlify.app"
+- "materioa.vercel.app"
+- "materioapp.in"
 - "localhost"
 - "127.0.0.1"
 styles:
