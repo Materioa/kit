@@ -60,8 +60,6 @@ Allowed Domains: {{ kit_data.allowed_domains | join: ', ' }}
       username: kitConfig.username,
       version: '{{ "now" | date: "%Y%m%d%H%M%S" }}'
     };
-    
-    console.log('Font Awesome Kit {{ kit_data.kit_id }} loaded successfully');
   }
   
   // Initialize when DOM is ready
