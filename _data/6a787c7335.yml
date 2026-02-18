@@ -13,6 +13,8 @@ allowed_domains:
 - "r51v0szv-4000.inc1.devtunnels.ms"
 - "r51v0szv-3000.inc1.devtunnels.ms"
 styles:
+- all
 - solid
 - regular
+
 
