@@ -5,12 +5,16 @@ allowed_domains:
 - "materioa.github.io"
 - "materioa.netlify.app"
 - "materioa.vercel.app"
+- "the-codebase.vercel.app"
 - "materioapp.in"
 - "localhost"
 - "127.0.0.1"
+- "r51v0szv-1000.inc1.devtunnels.ms"
+- "r51v0szv-4000.inc1.devtunnels.ms"
+- "r51v0szv-3000.inc1.devtunnels.ms"
 styles:
 - all
 - solid
 - regular
-- light
-- brands
+
+
