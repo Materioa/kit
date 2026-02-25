@@ -21,6 +21,9 @@ GITHUB_PAGES.md
 .bundle/
 vendor/
 
+# source files crawler
+crawler/
+
 # System files
 .DS_Store
 Thumbs.db

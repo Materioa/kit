@@ -7,10 +7,11 @@ allowed_domains:
   - "127.0.0.1"
 styles:
   - "fontawesome"     # Base FontAwesome CSS
+  - "jelly-regular"
   - "solid"           # Solid icons
   - "regular"         # Regular icons
   - "light"           # Light icons
-  - "duotone"         # Duotone icons
+  - "duotone"          # Duotone icons
   - "brands"          # Brand icons
   # Add any other styles you want:
   # - "thin"
