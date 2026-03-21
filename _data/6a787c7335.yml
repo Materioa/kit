@@ -5,6 +5,7 @@ allowed_domains:
 - "materioa.github.io"
 - "materioa.netlify.app"
 - "materioa.vercel.app"
+- "insightroom.vercel.app"
 - "the-codebase.vercel.app"
 - "materioapp.in"
 - "localhost"
