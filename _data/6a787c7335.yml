@@ -8,6 +8,8 @@ allowed_domains:
 - "insightroom.vercel.app"
 - "the-codebase.vercel.app"
 - "getmaterio.app"
+- "*.getmaterio.app"
+- "room.getmaterio.app"
 - "localhost"
 - "127.0.0.1"
 - "r51v0szv-1000.inc1.devtunnels.ms"
